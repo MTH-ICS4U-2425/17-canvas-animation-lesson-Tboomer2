@@ -36,8 +36,9 @@ export default class Player {
   update() {
     this.position.x += this.velocity.x
     this.position.y += this.velocity.y
-    this.draw();
     this.gravity()
+    this.draw();
+   
   }
 
   /**
@@ -49,9 +50,9 @@ export default class Player {
   }
 
   jump(){
-    if (this.ground == true){
+    if (this.grounded == true){
       this.velocity.y -= 20
-      this.ground== false
+      this.grounded== false
     }
     
   }
@@ -60,9 +61,9 @@ export default class Player {
     if (this.bottom >= FLOOR){
       this.velocity.y = 0
       this.position.y = FLOOR - this.height
-      this.ground=true
+      this.grounded=true
     } else {
-      this.ground=false
+      this.grounded=false
       this.velocity.y += GRAVITY
     }
   }

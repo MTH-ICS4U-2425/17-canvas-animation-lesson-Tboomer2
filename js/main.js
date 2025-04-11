@@ -14,8 +14,17 @@ import { CANVAS, CTX, MS_PER_FRAME, KEYS } from "./globals.js";
 
 // Globals
 const HERO = new Player(20, 50, 48, 48);
-
+let ground = new Image()
+ground.src = "../images/dino_large.png"
+ground.x_pos = 1
 let frame_time = performance.now()
+
+//Random integer
+function randInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 // Event Listeners
 document.addEventListener("keydown", keypress);
@@ -34,7 +43,30 @@ if (event.keyCode == KEYS.SPACE)
   HERO.jump()
 }
 
+// Ground class
+class grounds{
+  sx
+  sy = 103
+  sw 
+  h = 26
+  dx = 1
+  dy = 300
+  dw = 2300
+  dh = 26
 
+  img = new Image()
+  constructor(sx=randInt(1,2300),width=randInt(1,2300),src="../images/dino_large.png"){
+    this.sx=x
+    this.sw=width
+    this.img.src=scr
+  }
+
+  //drawImage(img,sx,sy,sw,h,dx,dy,dw,dh)
+  draw(){
+    CTX.drawImage(this.img,this.sx,this.sy,this.sw,this.h,this.dx,this.dy,this.dw,this.dh)
+    this.dx++
+  }
+}
 
 /**
  * The main game loop
@@ -55,6 +87,14 @@ function update() {
   
   // Clear the canvas
   CTX.clearRect(0, 0, CANVAS.width, CANVAS.height);
+
+  //Draw the ground
+  let temp= new grounds()
+  temp.draw()
+  // ground.classList.add("inverted")
+  //drawImage(img,sx,sy,sw,h,dw,dh)
+  // CTX.drawImage(ground,1,103,2300,26,ground.x_pos,300,2300,26)
+  // ground.x_pos -= 5
   // Draw our hero
   HERO.update();
   
