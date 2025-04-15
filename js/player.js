@@ -12,10 +12,12 @@ import { CTX, CANVAS, GRAVITY, FLOOR } from "./globals.js"
 
 export default class Player {
   ground = true
+  img = new Image()
+  timer = 0
   constructor(x, y, width, height) {
     this.width = width;
     this.height = height;
-
+    this.img.src = "../images/dino_large.png"
     this.position = {
       x: x,
       y: y
@@ -29,7 +31,7 @@ export default class Player {
   get right(){ return this.position.x +this.width }
   get bottom(){ return this.position.y +this.height }
   get top(){ return this.position.y }
-  get down(){ return this.position.x }
+  get left(){ return this.position.x }
   /**
    * Main function to update location, velocity, and image
    */
@@ -40,13 +42,28 @@ export default class Player {
     this.draw();
    
   }
-
+  frameOne(){
+    CTX.drawImage(this.img,1854.5,0,87,100,this.position.x,this.position.y,this.width,this.height)
+  }
+  frameTwo(){
+    CTX.drawImage(this.img,1942.5,0,87,100,this.position.x,this.position.y,this.width,this.height)
+  }
   /**
    * Draw the player on the canvas
    */
   draw() {
-    CTX.fillStyle = "yellow";
-    CTX.fillRect(this.position.x, this.position.y, this.width, this.height);
+    if(this.timer>=10){
+      this.frameTwo()
+      this.timer++
+
+      if (this.timer >= 20){
+        this.timer = 0
+      }
+    }else{
+      this.frameOne()
+      this.timer++
+    }
+    
   }
 
   jump(){
