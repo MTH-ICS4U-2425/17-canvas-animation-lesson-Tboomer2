@@ -217,7 +217,6 @@ function updateCactus(){ //updates all cactus
   }
   moveCactus()
   cactusTimer++
-  console.log(cactusTimer)
   }
 let cactuss = new cactus(CANVAS.width+60,300,30,30,4,"Cactus")
 let temp= new grounds()

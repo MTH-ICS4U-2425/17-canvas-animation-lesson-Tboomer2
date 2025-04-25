@@ -54,7 +54,6 @@ export default class Player {
     CTX.drawImage(this.img,2324,9,120,95,this.position.x,this.position.y,this.width,this.height)
   }
   frameTwoCrouch(){
-    console.log("2")
     CTX.drawImage(this.img,2204,9,120,95,this.position.x,this.position.y,this.width,this.height)
   }
   /**
